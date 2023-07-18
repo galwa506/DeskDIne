@@ -12,10 +12,10 @@
   },
   "husky": {   
      "hooks": {  
-        "pre-commit": "npm run prettier:check"        
+        "pre-commit": "yarn lint"        
       }   
    },
-   
+
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.1.0",
