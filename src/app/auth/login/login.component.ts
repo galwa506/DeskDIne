@@ -26,14 +26,14 @@ export class LoginComponent {
           .once('value');
         userSnapshot.then(userSnapshot => {
           const userData = userSnapshot.val();
+          Swal.fire({
+            icon: 'success',
+            text: 'login successful!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           if (userData.role === 0) {
             this.isSignedIn = true;
-            Swal.fire({
-              icon: 'success',
-              text: 'Success! Registration complete!',
-              showConfirmButton: false,
-              timer: 1500, // Duration in milliseconds (1 second)
-            });
             this.router.navigate(['/home']);
           } else {
             this.router.navigate(['/admin-dashboard']);

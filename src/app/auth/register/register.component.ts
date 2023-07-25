@@ -31,7 +31,7 @@ export class RegisterComponent {
           icon: 'success',
           text: 'Success! Registration complete!',
           showConfirmButton: false,
-          timer: 1500, // Duration in milliseconds (1 second)
+          timer: 1500,
         });
         this.router.navigate(['/sign-in']);
       })
@@ -41,7 +41,7 @@ export class RegisterComponent {
           title: 'Error!',
           text: 'An error occurred during registration. Please try again later.',
           showConfirmButton: false,
-          timer: 1500, // Duration in milliseconds (1 second)
+          timer: 1500,
         });
       });
   }
