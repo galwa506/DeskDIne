@@ -9,12 +9,6 @@ export class AuthService {
   isLoggedIn = false;
   constructor(private firebaseAuth: AngularFireAuth) {}
   signIn(email: string, password: string): Promise<UserCredential> {
-    // await this.firebaseAuth
-    //   .signInWithEmailAndPassword(email, password)
-    //   .then(res => {
-    //     this.isLoggedIn = true;
-    //     localStorage.setItem('user', JSON.stringify(res.user));
-    //   });
     this.isLoggedIn = true;
     return this.firebaseAuth.signInWithEmailAndPassword(email, password);
   }
