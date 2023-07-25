@@ -4,7 +4,6 @@ import {
   CanActivate,
   Router,
   RouterStateSnapshot,
-  mapToCanActivate,
 } from '@angular/router';
 
 import { Observable } from 'rxjs';

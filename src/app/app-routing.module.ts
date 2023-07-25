@@ -6,6 +6,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { HomeComponent } from './users/home/home.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: HomeComponent,
   },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

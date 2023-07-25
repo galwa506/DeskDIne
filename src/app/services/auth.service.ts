@@ -35,4 +35,8 @@ export class AuthService {
       }, reject);
     });
   }
+
+  forgotPassword(email: string): Promise<void> {
+    return this.firebaseAuth.sendPasswordResetEmail(email);
+  }
 }
