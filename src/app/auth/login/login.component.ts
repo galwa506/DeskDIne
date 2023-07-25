@@ -24,7 +24,6 @@ export class LoginComponent {
         .ref('users/' + user?.uid)
         .once('value');
       const userData = userSnapshot.val();
-      console.log(userData);
       if (userData.role === 0) {
         this.isSignedIn = true;
         Swal.fire({

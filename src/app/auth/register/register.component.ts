@@ -19,9 +19,7 @@ export class RegisterComponent {
   async onSignUp(email: string, password: string, name: string) {
     try {
       const userCredential = await this.AuthService.signUp(email, password);
-      console.log('userCredential', userCredential);
       const user = userCredential.user;
-      console.log('here1', user);
       // if (this.AuthService.isLoggedIn) {
       this.isSignedIn = true;
       const userData = {
