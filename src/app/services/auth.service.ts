@@ -8,7 +8,7 @@ import { UserCredential, User } from '@firebase/auth-types';
 export class AuthService {
   isLoggedIn = false;
   constructor(private firebaseAuth: AngularFireAuth) {}
-  async signIn(email: string, password: string): Promise<UserCredential> {
+  signIn(email: string, password: string): Promise<UserCredential> {
     // await this.firebaseAuth
     //   .signInWithEmailAndPassword(email, password)
     //   .then(res => {
@@ -19,13 +19,7 @@ export class AuthService {
     return this.firebaseAuth.signInWithEmailAndPassword(email, password);
   }
 
-  async signUp(email: string, password: string): Promise<UserCredential> {
-    // await this.firebaseAuth
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then(res => {
-    //     this.isLoggedIn = true;
-    //     localStorage.setItem('user', JSON.stringify(res.user));
-    //   });
+  signUp(email: string, password: string): Promise<UserCredential> {
     return this.firebaseAuth.createUserWithEmailAndPassword(email, password);
   }
 
@@ -41,8 +35,4 @@ export class AuthService {
       }, reject);
     });
   }
-
-  // isAuthenticated() {
-  //   return this.firebaseAuth.authState;
-  // }
 }

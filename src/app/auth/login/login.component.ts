@@ -16,34 +16,38 @@ export class LoginComponent {
     private router: Router,
     private db: AngularFireDatabase
   ) {}
-  async onSignIn(email: string, password: string) {
-    try {
-      const userCredential = await this.authService.signIn(email, password);
-      const user = userCredential.user;
-      const userSnapshot = await this.db.database
-        .ref('users/' + user?.uid)
-        .once('value');
-      const userData = userSnapshot.val();
-      if (userData.role === 0) {
-        this.isSignedIn = true;
+  onSignIn(email: string, password: string) {
+    const userCredential = this.authService.signIn(email, password);
+    userCredential
+      .then(userCredential => {
+        const user = userCredential.user;
+        const userSnapshot = this.db.database
+          .ref('users/' + user?.uid)
+          .once('value');
+        userSnapshot.then(userSnapshot => {
+          const userData = userSnapshot.val();
+          if (userData.role === 0) {
+            this.isSignedIn = true;
+            Swal.fire({
+              icon: 'success',
+              text: 'Success! Registration complete!',
+              showConfirmButton: false,
+              timer: 1500, // Duration in milliseconds (1 second)
+            });
+            this.router.navigate(['/home']);
+          } else {
+            this.router.navigate(['/admin-dashboard']);
+          }
+        });
+      })
+      .catch(error => {
         Swal.fire({
-          icon: 'success',
-          text: 'Success! Registration complete!',
+          icon: 'error',
+          title: 'Error!',
+          text: 'Something went wrong!',
           showConfirmButton: false,
           timer: 1500, // Duration in milliseconds (1 second)
         });
-        this.router.navigate(['/home']);
-      } else {
-        this.router.navigate(['/admin-dashboard']);
-      }
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error!',
-        text: 'Something went wrong!',
-        showConfirmButton: false,
-        timer: 1500, // Duration in milliseconds (1 second)
       });
-    }
   }
 }

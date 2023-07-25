@@ -16,33 +16,33 @@ export class RegisterComponent {
     private router: Router,
     private db: AngularFireDatabase
   ) {}
-  async onSignUp(email: string, password: string, name: string) {
-    try {
-      const userCredential = await this.AuthService.signUp(email, password);
-      const user = userCredential.user;
-      // if (this.AuthService.isLoggedIn) {
-      this.isSignedIn = true;
-      const userData = {
-        name: name,
-        role: 0,
-      };
-      this.db.database.ref('users/' + user?.uid).set(userData);
-      Swal.fire({
-        icon: 'success',
-        text: 'Success! Registration complete!',
-        showConfirmButton: false,
-        timer: 1500, // Duration in milliseconds (1 second)
+  onSignUp(email: string, password: string, name: string) {
+    const userCredential = this.AuthService.signUp(email, password);
+    userCredential
+      .then(userCredential => {
+        const user = userCredential.user;
+        this.isSignedIn = true;
+        const userData = {
+          name: name,
+          role: 0,
+        };
+        this.db.database.ref('users/' + user?.uid).set(userData);
+        Swal.fire({
+          icon: 'success',
+          text: 'Success! Registration complete!',
+          showConfirmButton: false,
+          timer: 1500, // Duration in milliseconds (1 second)
+        });
+        this.router.navigate(['/sign-in']);
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'An error occurred during registration. Please try again later.',
+          showConfirmButton: false,
+          timer: 1500, // Duration in milliseconds (1 second)
+        });
       });
-      this.router.navigate(['/sign-in']);
-      // }
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error!',
-        text: 'An error occurred during registration. Please try again later.',
-        showConfirmButton: false,
-        timer: 1500, // Duration in milliseconds (1 second)
-      });
-    }
   }
 }
