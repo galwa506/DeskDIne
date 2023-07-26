@@ -36,7 +36,7 @@ export class LoginComponent {
             this.isSignedIn = true;
             this.router.navigate(['/home']);
           } else {
-            this.router.navigate(['/admin-dashboard']);
+            this.router.navigate(['/admin/dashboard']);
           }
         });
       })

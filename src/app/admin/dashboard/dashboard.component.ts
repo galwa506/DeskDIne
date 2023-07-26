@@ -7,15 +7,4 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {
-  isSignedIn = false;
-  constructor(
-    private AuthService: AuthService,
-    private router: Router
-  ) {}
-  logout() {
-    this.isSignedIn = false;
-    this.AuthService.signOut();
-    this.router.navigate(['/sign-in']);
-  }
-}
+export class DashboardComponent {}
