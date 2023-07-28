@@ -20,6 +20,10 @@ export class SideBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
     this.authService.getCurrentUserUid().subscribe(email => {
       this.currentUser = email;
       if (this.currentUser) {
