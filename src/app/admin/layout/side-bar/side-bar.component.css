@@ -1,3 +1,4 @@
+
 :host {
   .mat-icon {
     vertical-align: middle;
@@ -6,7 +7,7 @@
 }
 .profile-card{
   text-align: center;
-  padding: 0 20px 20px 20px;
+  padding:20px 30px 20px 20px;
 }
 
 .user-img {
@@ -14,4 +15,9 @@
   height: 100px;
   object-fit: cover;
   border-radius: 50%;
+}
+
+h4,a{ 
+  font-size: 16px;
+  margin-top: 10px;
 }

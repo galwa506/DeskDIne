@@ -23,6 +23,7 @@ export class RegisterComponent {
         const user = userCredential.user;
         this.isSignedIn = true;
         const userData = {
+          email: email,
           name: name,
           role: 0,
         };

@@ -44,11 +44,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 //high charts
 import { HighchartsChartModule } from 'highcharts-angular';
-
+import { CardComponent } from './admin/widgets/card/card.component';
+import { UserService } from './services/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +69,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     LayoutComponent,
     OrdersComponent,
     GraphComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,11 +89,15 @@ import { HighchartsChartModule } from 'highcharts-angular';
     MatMenuModule,
     MatListModule,
     HighchartsChartModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatTableModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     AuthService,
     AuthGuard,
+    UserService,
   ],
   bootstrap: [AppComponent],
 })
