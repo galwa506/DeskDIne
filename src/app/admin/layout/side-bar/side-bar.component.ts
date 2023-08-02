@@ -26,14 +26,13 @@ export class SideBarComponent implements OnInit {
   getCurrentUser() {
     this.authService.getCurrentUserUid().subscribe(email => {
       this.currentUser = email;
-      if (this.currentUser) {
+      this.currentUser &&
         this.authService.findUserByUid(this.currentUser).subscribe(user => {
           if (user) {
             this.userName = user.name;
             this.userEmail = user.email;
           }
         });
-      }
     });
   }
 }

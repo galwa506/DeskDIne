@@ -15,8 +15,8 @@ export class HeaderComponent {
     private router: Router
   ) {}
   logout() {
-    this.isSignedIn = false;
     this.AuthService.signOut();
+    this.isSignedIn = false;
     this.router.navigate(['/sign-in']);
   }
   toggleSideBar() {
