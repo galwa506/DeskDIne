@@ -30,7 +30,8 @@
         ],
         "no-console": "error",
         "no-debugger": "error",
-        "semi": "error"
+        "semi": [2, "always"]
+
       }
     },
     {
