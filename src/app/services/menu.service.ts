@@ -11,22 +11,20 @@ import Swal from 'sweetalert2';
 export class MenuService {
   constructor(private http: HttpClient) {}
 
-  checkItem(itemName: string): Observable<Menu | null> {
+  getMenuItems(): Observable<Menu[]> {
     return this.http
       .get<{ [key: string]: Menu }>(environment.baseUrl + 'menu.json')
-      .pipe(
-        map(res => {
-          const items = res ? Object.values(res) : [];
-          const foundItem = items.find(
-            item => (item as Menu).itemName === itemName
-          );
-          return foundItem || null;
-        })
-      );
+      .pipe(map(res => Object.values(res || [])));
+  }
+
+  findItem(itemName: string): Observable<Menu | null> {
+    return this.getMenuItems().pipe(
+      map(items => items.find(item => item.itemName === itemName) || null)
+    );
   }
 
   addItem(menu: Menu): Observable<any> {
-    return this.checkItem(menu.itemName).pipe(
+    return this.findItem(menu.itemName).pipe(
       switchMap(res => {
         if (!menu.itemName || !menu.price) {
           Swal.fire({
