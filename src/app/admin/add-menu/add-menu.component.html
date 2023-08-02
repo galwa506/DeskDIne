@@ -1,1 +1,33 @@
-<p>add-menu works!</p>
+<h5>Add Menu</h5>
+<br />
+<form [formGroup]="menuForm" (ngSubmit)="onAddItem()">
+  <mat-form-field class="example-form-field">
+    <mat-label>Item Name</mat-label>
+    <input matInput type="text" formControlName="itemName" />
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="onClearInput($event, 'itemName')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  &nbsp;
+  <mat-form-field class="example-form-field2">
+    <mat-label>Price(in Nu)</mat-label>
+    <input matInput type="text" formControlName="price" />
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="onClearInput($event, 'price')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <section>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary">Add</button>
+    </div>
+  </section>
+</form>

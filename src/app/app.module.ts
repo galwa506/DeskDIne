@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 
 // components
 import { AppComponent } from './app.component';
@@ -49,13 +49,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 //high charts
 import { HighchartsChartModule } from 'highcharts-angular';
 import { CardComponent } from './admin/widgets/card/card.component';
 import { UserService } from './services/user.service';
+import { MenuService } from './services/menu.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +82,6 @@ import { UserService } from './services/user.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     HttpClientModule,
-    FormsModule,
     MatSidenavModule,
     MatDividerModule,
     MatButtonModule,
@@ -97,12 +96,14 @@ import { UserService } from './services/user.service';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     AuthService,
     AuthGuard,
     UserService,
+    MenuService,
   ],
   bootstrap: [AppComponent],
 })
