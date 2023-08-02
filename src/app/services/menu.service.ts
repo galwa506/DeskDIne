@@ -68,7 +68,9 @@ export class MenuService {
       .get<{ [key: string]: Menu }>(environment.baseUrl + 'menu.json')
       .pipe(
         map(data => {
-          return Object.keys(data).map(key => data[key])
+          console.log('hey');
+          return Object.keys(data).map(key => data[key]);
+          
         })
       );
   }
