@@ -20,12 +20,14 @@ export class AddMenuComponent implements OnInit {
     this.menuForm = new FormGroup({
       itemName: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
+      image: new FormControl(null, Validators.required),
     });
   }
   onAddItem() {
     const menuItem = {
       itemName: this.menuForm.get('itemName')?.value,
       price: this.menuForm.get('price')?.value,
+      image: this.menuForm.get('image')?.value,
     };
     this.menuService.addItem(menuItem).subscribe();
   }
@@ -34,5 +36,16 @@ export class AddMenuComponent implements OnInit {
     // Prevent the click event from bubbling up to the form and triggering ngSubmit
     event.preventDefault();
     this.menuForm.get(controlName)?.setValue(null);
+  }
+
+  handleImageChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.menuForm.get('image')?.setValue(reader.result);
+      };
+      reader.readAsDataURL(inputElement.files[0]);
+    }
   }
 }

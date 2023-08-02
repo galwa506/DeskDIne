@@ -24,7 +24,7 @@ export class UserService {
               role: number;
             };
             const role = value.role;
-            if (role === 0) {
+            if (!role) {
               this.count++;
             }
           });

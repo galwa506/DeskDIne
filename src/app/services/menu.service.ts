@@ -59,7 +59,7 @@ export class MenuService {
       })
     );
   }
-  // to fetch menu
+
   fetchMenu(): Observable<Menu[]> {
     return this.http
       .get<{ [key: string]: Menu }>(environment.baseUrl + 'menu.json')

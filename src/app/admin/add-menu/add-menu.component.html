@@ -24,7 +24,7 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-
+  <input type="file" (change)="handleImageChange($event)" accept="image/*" />
   <section>
     <div class="example-button-row">
       <button mat-raised-button color="primary">Add</button>
