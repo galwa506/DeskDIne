@@ -1,9 +1,9 @@
 export class Menu {
   itemName!: string;
   price!: number;
-  image!: File;
+  image!: Promise<string>;
 
-  constructor(itemName: string, price: number, image: File) {
+  constructor(itemName: string, price: number, image: Promise<string>) {
     this.itemName = itemName;
     this.price = price;
     this.image = image;
