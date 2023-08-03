@@ -38,14 +38,14 @@ export class AddMenuComponent implements OnInit {
     this.menuForm.get(controlName)?.setValue(null);
   }
 
-  handleImageChange(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    if (inputElement.files && inputElement.files[0]) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.menuForm.get('image')?.setValue(reader.result);
-      };
-      reader.readAsDataURL(inputElement.files[0]);
-    }
-  }
+  // handleImageChange(event: Event) {
+  //   const inputElement = event.target as HTMLInputElement;
+  //   if (inputElement.files && inputElement.files[0]) {
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       this.menuForm.get('image')?.setValue(reader.result);
+  //     };
+  //     reader.readAsDataURL(inputElement.files[0]);
+  //   }
+  // }
 }

@@ -23,6 +23,7 @@ import { GraphComponent } from './admin/widgets/graph/graph.component';
 //firebase
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 //interceptors
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -81,6 +82,7 @@ import { MenuService } from './services/menu.service';
     MatSlideToggleModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     HttpClientModule,
     MatSidenavModule,
     MatDividerModule,
