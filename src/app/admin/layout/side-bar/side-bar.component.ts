@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { NavigationLinks } from 'src/app/misc/navigationLink.constant';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -12,6 +12,7 @@ export class SideBarComponent implements OnInit {
   userName!: string;
   userEmail!: string;
   currentUser!: string | null;
+  navigationLinks = NavigationLinks;
 
   constructor(
     private db: AngularFireDatabase,
