@@ -15,6 +15,6 @@ export class HomeComponent {
   logout() {
     this.isSignedIn = false;
     this.AuthService.signOut();
-    this.router.navigate(['/sign-in']);
+    this.router.navigate(['/sign-in'])
   }
 }
