@@ -1,20 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { MenuService } from 'src/app/services/menu.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   isSignedIn = false;
+  itemName!: string;
+  price!: number;
+  image!: Promise<string | void>;
+  menuList: any[] = [];
   constructor(
     private AuthService: AuthService,
-    private router: Router
+    private router: Router,
+    private menu: MenuService
   ) {}
-  logout() {
-    this.isSignedIn = false;
-    this.AuthService.signOut();
-    this.router.navigate(['/sign-in']);
+
+  ngOnInit(): void {
+    this.fetchMenuList();
+  }
+
+  fetchMenuList() {
+    this.menu.fetchMenu().subscribe(res => {
+      this.menuList = res;
+    });
   }
 }

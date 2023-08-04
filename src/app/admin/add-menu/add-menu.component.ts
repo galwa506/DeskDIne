@@ -4,7 +4,6 @@ import { MenuService } from 'src/app/services/menu.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { MenuInput } from 'src/app/misc/menu.constant';
-import { Menu } from './model/menu.model';
 
 @Component({
   selector: 'app-add-menu',
@@ -51,7 +50,6 @@ export class AddMenuComponent implements OnInit {
     const url = this.fireStorage.ref(filepath).getDownloadURL();
     return url.toPromise();
   }
-
   onClearInput(event: Event, controlName: string) {
     // Prevent the click event from bubbling up to the form and triggering ngSubmit
     event.preventDefault();
