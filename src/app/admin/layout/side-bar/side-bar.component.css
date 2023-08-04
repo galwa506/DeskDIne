@@ -1,0 +1,23 @@
+
+:host {
+  .mat-icon {
+    vertical-align: middle;
+    margin-right: 20px;
+  }
+}
+.profile-card{
+  text-align: center;
+  padding:20px 30px 20px 20px;
+}
+
+.user-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+h4,a{ 
+  font-size: 16px;
+  margin-top: 10px;
+}

@@ -1,0 +1,31 @@
+<h5>Add Menu</h5>
+<br />
+<form [formGroup]="menuForm" (ngSubmit)="onAddItem()">
+  <mat-form-field
+    class="example-form-field"
+    *ngFor="let menuinput of menuInput">
+    <mat-label>{{ menuinput.label }}</mat-label>
+    <input
+      matInput
+      [type]="menuinput.type"
+      [formControlName]="menuinput.formControlName" />
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="(menuinput.onclick)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  &nbsp;
+  <input
+    type="file"
+    (change)="handleImageChange($event)"
+    accept="image/*"
+    formControlName="image" />
+  <section>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary">Add</button>
+    </div>
+  </section>
+</form>

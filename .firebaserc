@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "deskdine": {
+      "hosting": {
+        "DeskDine": [
+          "deskdine"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "deskdine"
+  }
+}
