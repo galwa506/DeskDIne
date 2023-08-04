@@ -45,9 +45,9 @@ export class AddMenuComponent implements OnInit {
       this.path = inputElement.files[0];
     }
   }
-  imageURl() {
+  async imageURl() {
     const filepath = `/item-name/${this.path.name}`;
-    this.fireStorage.upload(filepath, this.path);
+    await this.fireStorage.upload(filepath, this.path);
     const url = this.fireStorage.ref(filepath).getDownloadURL();
     return url.toPromise();
   }
