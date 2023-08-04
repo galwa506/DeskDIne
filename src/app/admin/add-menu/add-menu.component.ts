@@ -3,6 +3,8 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { MenuService } from 'src/app/services/menu.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { MenuInput } from 'src/app/misc/menu.constant';
+import { Menu } from './model/menu.model';
 
 @Component({
   selector: 'app-add-menu',
@@ -13,6 +15,7 @@ export class AddMenuComponent implements OnInit {
   menuForm!: FormGroup;
   value = 'Clear me';
   path!: File;
+  menuInput = MenuInput;
   constructor(
     private db: AngularFireDatabase,
     private menuService: MenuService,
@@ -27,11 +30,11 @@ export class AddMenuComponent implements OnInit {
     });
   }
 
-  onAddItem() {
+  async onAddItem() {
     const menuItem = {
       itemName: this.menuForm.get('itemName')?.value,
       price: this.menuForm.get('price')?.value,
-      image: this.imageURl(),
+      image: await this.imageURl(),
     };
     this.menuService.addItem(menuItem).subscribe();
   }
@@ -42,15 +45,15 @@ export class AddMenuComponent implements OnInit {
       this.path = inputElement.files[0];
     }
   }
-
   imageURl() {
     const filepath = `/item-name/${this.path.name}`;
     this.fireStorage.upload(filepath, this.path);
-    const url = this.fireStorage.ref(filepath).getDownloadURL().toPromise();
-    return url;
+    const url = this.fireStorage.ref(filepath).getDownloadURL();
+    return url.toPromise();
   }
 
   onClearInput(event: Event, controlName: string) {
+    // Prevent the click event from bubbling up to the form and triggering ngSubmit
     event.preventDefault();
     this.menuForm.get(controlName)?.setValue(null);
   }
