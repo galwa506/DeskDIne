@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 import { MenuService } from 'src/app/services/menu.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   menuList: any[] = [];
   constructor(
     private AuthService: AuthService,
-    private router: Router,
     private menu: MenuService
   ) {}
 
