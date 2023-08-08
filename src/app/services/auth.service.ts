@@ -48,6 +48,7 @@ export class AuthService {
       const auth = getAuth();
       const unsubscribe = onAuthStateChanged(auth, user => {
         if (user) {
+          observer.next(user.uid);
           observer.next(user.email);
         } else {
           observer.next(null);

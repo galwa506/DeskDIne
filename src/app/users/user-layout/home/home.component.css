@@ -1,0 +1,25 @@
+.example-card {
+    max-width: 250px;
+    max-height: 400px;
+    margin-top: 50px;
+  }
+
+  .example-card::-webkit-scrollbar{
+    display: none;
+  }
+.menu{
+    row-gap: 15px;
+    column-gap: 2%;
+    margin-left: 20px;
+
+}
+
+.mat-mdc-button{
+  width: 1000px;
+  background-color: #4169E1;
+
+}
+
+.mat-mdc-button:hover{
+  background-color: black;
+}

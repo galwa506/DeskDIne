@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { UserService } from 'src/app/services/user.service';
 import { MenuService } from 'src/app/services/menu.service';
-import { Menu } from '../add-menu/model/menu.model';
+import { Menu } from '../../model/menu.model';
 
 @Component({
   selector: 'app-dashboard',
