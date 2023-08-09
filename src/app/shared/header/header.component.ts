@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Location } from '@angular/common';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -10,19 +11,23 @@ import { Location } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   isSignedIn = false;
-  id!: number;
+  id = 0;
+  totalItem = 0;
+  loc = this.location.path().indexOf('/user') > -1;
   @Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
   constructor(
     private AuthService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
+    this.fetchMenu();
   }
   logout() {
     this.AuthService.signOut();
@@ -43,7 +48,9 @@ export class HeaderComponent implements OnInit {
     return this.router.navigate(['/user/', this.id, 'home']);
   }
 
-  isShoppingCart() {
-    return this.location.path().indexOf('/user') > -1;
+  fetchMenu() {
+    this.cartService.getMenuItems().subscribe(res => {
+      this.totalItem = res.length;
+    });
   }
 }

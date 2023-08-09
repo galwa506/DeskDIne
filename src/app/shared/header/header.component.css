@@ -6,3 +6,10 @@ ul li {
     color: white;
     position: sticky;
   }
+
+  .cartHeader{
+    font-size: 9px;
+    top: -20px;
+    right: -10px;
+    position: absolute;
+  }

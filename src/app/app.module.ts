@@ -59,6 +59,7 @@ import { UserService } from './services/user.service';
 import { MenuService } from './services/menu.service';
 import { CartComponent } from './users/user-layout/cart/cart.component';
 import { UserLayoutComponent } from './users/user-layout/user-layout/user-layout.component';
+import { CartService } from './services/cart.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -110,6 +111,7 @@ import { UserLayoutComponent } from './users/user-layout/user-layout/user-layout
     AuthGuard,
     UserService,
     MenuService,
+    CartService,
   ],
   bootstrap: [AppComponent],
 })

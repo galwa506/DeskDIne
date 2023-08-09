@@ -21,9 +21,10 @@
             </button>
           </mat-menu>
         </li>
-        <li *ngIf="isShoppingCart()">
+        <li *ngIf="loc">
           <button mat-button (click)="cart()">
             <mat-icon>shopping_cart</mat-icon>
+            <p class="cartHeader badge bg-danger">{{ totalItem }}</p>
           </button>
         </li>
       </ul>
