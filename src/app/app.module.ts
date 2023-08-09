@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { HomeComponent } from './users/home/home.component';
+import { HomeComponent } from './users/user-layout/home/home.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -57,6 +57,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { CardComponent } from './admin/widgets/card/card.component';
 import { UserService } from './services/user.service';
 import { MenuService } from './services/menu.service';
+import { CartComponent } from './users/user-layout/cart/cart.component';
+import { UserLayoutComponent } from './users/user-layout/user-layout/user-layout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +76,8 @@ import { MenuService } from './services/menu.service';
     OrdersComponent,
     GraphComponent,
     CardComponent,
+    CartComponent,
+    UserLayoutComponent,
   ],
   imports: [
     BrowserModule,

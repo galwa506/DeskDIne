@@ -34,7 +34,7 @@ export class LoginComponent {
           });
           if (userData.role === 0) {
             this.isSignedIn = true;
-            this.router.navigate(['/home']);
+            this.router.navigate(['/user/', user?.uid, 'home']);
           } else {
             this.router.navigate(['/admin/dashboard']);
           }
