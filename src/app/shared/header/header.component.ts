@@ -10,7 +10,8 @@ import { Location } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   isSignedIn = false;
-  id!: number;
+  id = 0;
+  loc = this.location.path().indexOf('/user') > -1;
   @Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
   constructor(
     private AuthService: AuthService,
@@ -41,9 +42,5 @@ export class HeaderComponent implements OnInit {
       return this.router.navigate(['/admin/dashboard']);
     }
     return this.router.navigate(['/user/', this.id, 'home']);
-  }
-
-  isShoppingCart() {
-    return this.location.path().indexOf('/user') > -1;
   }
 }
