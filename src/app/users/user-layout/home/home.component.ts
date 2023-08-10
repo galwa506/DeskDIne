@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { MenuService } from 'src/app/services/menu.service';
 import { CartService } from 'src/app/services/cart.service';
+import { Menu } from 'src/app/model/menu.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,7 @@ export class HomeComponent implements OnInit {
   itemName = '';
   price = 0;
   image!: Promise<string | void>;
-  menuList: any[] = [];
+  menuList: Menu[] = [];
   constructor(
     private AuthService: AuthService,
     private menu: MenuService,
@@ -34,7 +36,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  addToCart(item: any) {
-    this.cartService.addToCart(item);
+  addToCart(item: Menu) {
+    const itemExist = this.cartService.addToCart(item);
+    if (itemExist) {
+      Swal.fire({
+        icon: 'error',
+        text: 'Item already exists in the cart!',
+        showConfirmButton: false,
+      });
+    } else {
+      Swal.fire({
+        icon: 'success',
+        text: 'Item added to cart!',
+        showConfirmButton: false,
+      });
+    }
   }
 }

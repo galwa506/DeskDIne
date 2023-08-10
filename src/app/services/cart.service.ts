@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,18 +17,23 @@ export class CartService {
   //   this.menuList.next(menu);
   // }
 
-  addToCart(menu: any) {
-    const existingItem = this.checkItem(menu);
-    if (existingItem) {
-      existingItem.quantity++;
-    } else {
-      menu.quantity = 1;
-      this.cartItemList.push(menu);
+  addToCart(menu: any): boolean {
+    try {
+      const existingItem = this.checkItem(menu);
+      if (existingItem) {
+        existingItem.quantity;
+        return true;
+      } else {
+        menu.quantity = 1;
+        this.cartItemList.push(menu);
+      }
+      this.menuList.next(this.cartItemList);
+      this.getTotalPrice();
+      return false;
+    } catch (error) {
+      return false;
     }
-    this.menuList.next(this.cartItemList);
-    this.getTotalPrice();
   }
-
   checkItem(menu: any) {
     const index = this.cartItemList.findIndex(
       (cartItem: { itemName: any }) => cartItem.itemName === menu.itemName

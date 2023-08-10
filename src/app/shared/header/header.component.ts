@@ -24,10 +24,14 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.idParams();
+    this.fetchMenu();
+  }
+
+  idParams() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
-    this.fetchMenu();
   }
   logout() {
     this.AuthService.signOut();

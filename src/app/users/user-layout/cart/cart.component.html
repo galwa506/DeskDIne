@@ -2,7 +2,7 @@
 <ng-container *ngIf="dataSource.data.length">
   <section class="example-container mat-elevation-z8" tabindex="0">
     <table mat-table [dataSource]="dataSource">
-      <!-- Item Column -->
+      <!-- No Column -->
       <ng-container matColumnDef="no">
         <th mat-header-cell *matHeaderCellDef>No</th>
         <td mat-cell *matCellDef="let i = index">{{ getSerialNumber(i) }}</td>
@@ -19,6 +19,22 @@
       <ng-container matColumnDef="cost">
         <th mat-header-cell *matHeaderCellDef>Cost</th>
         <td mat-cell *matCellDef="let element">Nu {{ element.price }}</td>
+        <td mat-footer-cell *matFooterCellDef>dummy</td>
+      </ng-container>
+
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="q">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <button class="btn btn-dark"><strong>-</strong></button>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-primary" (click)="quantity('min', element)">
+            <strong>-</strong>
+          </button>
+          {{ element.quantity }}
+          <button class="btn btn-primary" (click)="quantity('max', element)">
+            <strong>+</strong>
+          </button>
+        </td>
         <td mat-footer-cell *matFooterCellDef>dummy</td>
       </ng-container>
 
