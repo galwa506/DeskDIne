@@ -11,12 +11,6 @@ export class CartService {
   getMenuItems() {
     return this.menuList.asObservable();
   }
-
-  // setMenuItems(menu: any) {
-  //   this.cartItemList.push(...menu);
-  //   this.menuList.next(menu);
-  // }
-
   addToCart(menu: any): boolean {
     try {
       const existingItem = this.checkItem(menu);
