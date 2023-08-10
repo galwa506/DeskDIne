@@ -12,8 +12,12 @@ export class CartComponent implements OnInit {
   dataSource = new MatTableDataSource<Menu>();
   totalItem = 0;
   constructor(private cartService: CartService) {}
+
   ngOnInit(): void {
-    // this.fetchMenu();
+    this.fetchMenuItems();
+  }
+
+  fetchMenuItems() {
     this.cartService.getMenuItems().subscribe(res => {
       this.dataSource.data = res;
       this.dataSource.data.forEach(item => {
