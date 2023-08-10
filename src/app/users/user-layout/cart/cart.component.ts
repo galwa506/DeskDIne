@@ -8,9 +8,9 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  displayedColumns = ['no', 'item', 'cost', 'q'];
   dataSource = new MatTableDataSource<Menu>();
-  totalItem = 0;
+  displayedColumns = ['no', 'item', 'cost', 'q'];
+  totalItem = this.cartService.getTotalPrice();
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
@@ -28,7 +28,6 @@ export class CartComponent implements OnInit {
           Object.assign(item, { quantity: 1 });
         }
       });
-      this.totalItem = this.cartService.getTotalPrice();
     });
   }
 
@@ -36,11 +35,13 @@ export class CartComponent implements OnInit {
     return index + 1;
   }
 
-  quantity(value: string, item: any) {
+  getQuantity(value: string, item: any) {
     if (item.quantity < 50 && value === 'max') {
       item.quantity += 1;
+      this.totalItem += parseInt(item.price);
     } else if (item.quantity > 1 && value === 'min') {
       item.quantity -= 1;
+      this.totalItem -= parseInt(item.price);
     }
   }
 }

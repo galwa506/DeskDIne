@@ -19,7 +19,7 @@
       <ng-container matColumnDef="cost">
         <th mat-header-cell *matHeaderCellDef>Cost</th>
         <td mat-cell *matCellDef="let element">Nu {{ element.price }}</td>
-        <td mat-footer-cell *matFooterCellDef>dummy</td>
+        <td mat-footer-cell *matFooterCellDef>Nu {{ totalItem }}</td>
       </ng-container>
 
       <!-- Quantity Column -->
@@ -27,15 +27,15 @@
         <th mat-header-cell *matHeaderCellDef>Quantity</th>
         <button class="btn btn-dark"><strong>-</strong></button>
         <td mat-cell *matCellDef="let element">
-          <button class="btn btn-primary" (click)="quantity('min', element)">
+          <button class="btn btn-primary" (click)="getQuantity('min', element)">
             <strong>-</strong>
           </button>
           {{ element.quantity }}
-          <button class="btn btn-primary" (click)="quantity('max', element)">
+          <button class="btn btn-primary" (click)="getQuantity('max', element)">
             <strong>+</strong>
           </button>
         </td>
-        <td mat-footer-cell *matFooterCellDef>dummy</td>
+        <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
