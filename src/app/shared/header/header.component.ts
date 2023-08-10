@@ -10,11 +10,11 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  @Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
   isSignedIn = false;
   id = 0;
   totalItem = 0;
   loc = this.location.path().indexOf('/user') > -1;
-  @Output() toggleSidebar: EventEmitter<any> = new EventEmitter();
   constructor(
     private AuthService: AuthService,
     private router: Router,
