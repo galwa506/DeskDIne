@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
   image!: Promise<string | void>;
   menuList: Menu[] = [];
   constructor(
-    private AuthService: AuthService,
     private menu: MenuService,
     private cartService: CartService
   ) {}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Menu } from 'src/app/model/menu.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-cart',
@@ -11,10 +13,19 @@ export class CartComponent implements OnInit {
   dataSource = new MatTableDataSource<Menu>();
   displayedColumns = ['no', 'item', 'cost', 'q', 'remove'];
   totalItem = this.cartService.getTotalPrice();
-  constructor(private cartService: CartService) {}
+  id = 0;
+  constructor(
+    private cartService: CartService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.fetchMenuItems();
+  }
+
+  toHome() {
+    const id = this.router.url.split('/')[2];
+    return this.router.navigate(['/user/', id, 'home']);
   }
 
   fetchMenuItems() {

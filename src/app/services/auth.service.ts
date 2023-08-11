@@ -17,6 +17,7 @@ export class AuthService {
     private firebaseAuth: AngularFireAuth,
     private http: HttpClient
   ) {}
+
   signIn(email: string, password: string): Promise<UserCredential> {
     this.isLoggedIn = true;
     return this.firebaseAuth.signInWithEmailAndPassword(email, password);
@@ -42,7 +43,6 @@ export class AuthService {
   forgotPassword(email: string): Promise<void> {
     return this.firebaseAuth.sendPasswordResetEmail(email);
   }
-  // : Promise<User | null>
   getCurrentUserUid(): Observable<string | null> {
     return new Observable<string | null>(observer => {
       const auth = getAuth();

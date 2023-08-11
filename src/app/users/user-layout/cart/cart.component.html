@@ -53,8 +53,18 @@
       <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
     </table>
   </section>
+  <section class="row actionButtons">
+    <button mat-raised-button color="warn">Delete</button>
+    <button mat-flat-button color="primary" style="width: 100px">
+      Checkout
+    </button>
+  </section>
+  <br />
 </ng-container>
 
 <ng-container *ngIf="!dataSource.data.length">
-  <p>Your cart is empty</p>
+  <div class="emptyCart">
+    <p>Your cart is empty</p>
+    <button mat-flat-button color="primary" (click)="toHome()">Shop Now</button>
+  </div>
 </ng-container>
