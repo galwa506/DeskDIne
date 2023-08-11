@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Menu } from 'src/app/model/menu.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -58,5 +59,15 @@ export class CartComponent implements OnInit {
 
   removeItem(item: any) {
     this.cartService.removeCartItem(item);
+  }
+  removeAll() {
+    Swal.fire({
+      icon: 'warning',
+      text: 'Are you sure? You won"t be able to revert this!',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+    }).then(result => {
+      if (result.value) return this.cartService.removeAllCart();
+    });
   }
 }
