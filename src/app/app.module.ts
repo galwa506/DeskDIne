@@ -36,7 +36,7 @@ import { environment } from '../environments/environment';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 
-//angular-material and flec-layout
+//angular-material and flex-layout
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
@@ -60,6 +60,7 @@ import { MenuService } from './services/menu.service';
 import { CartComponent } from './users/user-layout/cart/cart.component';
 import { UserLayoutComponent } from './users/user-layout/user-layout/user-layout.component';
 import { CartService } from './services/cart.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,6 +105,7 @@ import { CartService } from './services/cart.service';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

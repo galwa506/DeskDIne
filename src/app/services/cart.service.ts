@@ -46,12 +46,12 @@ export class CartService {
 
   removeCartItem(menu: any) {
     this.cartItemList.map((a: any, index: any) => {
-      if (menu.id === a.id) {
+      if (menu.itemName === a.itemName) {
         this.cartItemList.splice(index, 1);
       }
     });
+    this.menuList.next(this.cartItemList);
   }
-
   removeAllCart() {
     this.cartItemList = [];
     this.menuList.next(this.cartItemList);

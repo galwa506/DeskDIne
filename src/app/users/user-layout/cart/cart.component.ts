@@ -9,7 +9,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
   dataSource = new MatTableDataSource<Menu>();
-  displayedColumns = ['no', 'item', 'cost', 'q'];
+  displayedColumns = ['no', 'item', 'cost', 'q', 'remove'];
   totalItem = this.cartService.getTotalPrice();
   constructor(private cartService: CartService) {}
 
@@ -43,5 +43,9 @@ export class CartComponent implements OnInit {
       item.quantity -= 1;
       this.totalItem -= parseInt(item.price);
     }
+  }
+
+  removeItem(item: any) {
+    this.cartService.removeCartItem(item);
   }
 }
