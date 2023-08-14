@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Menu } from '../model/menu.model';
 
 @Injectable({
   providedIn: 'root',
@@ -65,15 +64,15 @@ export class CartService {
     this.cartItemList = [];
     localStorage.clear();
     this.menuList.next(this.cartItemList);
-    debugger
   }
   saveCart() {
     localStorage.setItem('cart-items', JSON.stringify(this.cartItemList));
   }
 
   loadCart() {
-    return (this.cartItemList = JSON.parse(
-      (localStorage.getItem('cart-items') as any) || []
-    ));
+    const cartItemsExist = localStorage.getItem('cart-items') as string;
+    if (cartItemsExist) {
+      return (this.cartItemList = JSON?.parse(cartItemsExist));
+    }
   }
 }
