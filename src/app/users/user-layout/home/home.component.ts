@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
 import { MenuService } from 'src/app/services/menu.service';
 import { CartService } from 'src/app/services/cart.service';
 import { Menu } from 'src/app/model/menu.model';
@@ -14,6 +13,7 @@ export class HomeComponent implements OnInit {
   isSignedIn = false;
   itemName = '';
   price = 0;
+  sdf = 'hi';
   image!: Promise<string | void>;
   menuList: Menu[] = [];
   constructor(

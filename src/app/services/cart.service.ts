@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Menu } from '../model/menu.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,15 +12,23 @@ export class CartService {
   getMenuItems() {
     return this.menuList.asObservable();
   }
+
+  setMenuItems(item: any) {
+    this.cartItemList.push(...item);
+    this.menuList.next(item);
+  }
   addToCart(menu: any): boolean {
     try {
       const existingItem = this.checkItem(menu);
       if (existingItem) {
         existingItem.quantity;
+        this.saveCart();
+
         return true;
       } else {
         menu.quantity = 1;
         this.cartItemList.push(menu);
+        this.saveCart();
       }
       this.menuList.next(this.cartItemList);
       this.getTotalPrice();
@@ -55,5 +64,14 @@ export class CartService {
   removeAllCart() {
     this.cartItemList = [];
     this.menuList.next(this.cartItemList);
+  }
+  saveCart() {
+    localStorage.setItem('cart-items', JSON.stringify(this.cartItemList));
+  }
+
+  loadCart() {
+    return (this.cartItemList = JSON.parse(
+      (localStorage.getItem('cart-items') as any) || []
+    ));
   }
 }

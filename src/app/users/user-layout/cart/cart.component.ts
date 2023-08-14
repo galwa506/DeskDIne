@@ -30,6 +30,10 @@ export class CartComponent implements OnInit {
   }
 
   fetchMenuItems() {
+    const val = this.cartService.loadCart();
+    if (val) {
+      return (this.dataSource.data = val);
+    }
     this.cartService.getMenuItems().subscribe(res => {
       this.dataSource.data = res;
       this.dataSource.data.forEach(item => {
