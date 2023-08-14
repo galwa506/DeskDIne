@@ -63,7 +63,9 @@ export class CartService {
   }
   removeAllCart() {
     this.cartItemList = [];
+    localStorage.clear();
     this.menuList.next(this.cartItemList);
+    debugger
   }
   saveCart() {
     localStorage.setItem('cart-items', JSON.stringify(this.cartItemList));
