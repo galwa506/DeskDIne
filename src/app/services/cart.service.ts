@@ -74,4 +74,16 @@ export class CartService {
       return (this.cartItemList = JSON?.parse(cartItemsExist));
     }
   }
+
+  updateDataLS(quantity: number, item: any) {
+    const storedData = localStorage.getItem('cart-items');
+    if (!storedData) return;
+    const updatedArray = JSON.parse(storedData).map((element: any) => {
+      if (element.itemName === item.itemName) {
+        return { ...element, quantity };
+      }
+      return element;
+    });
+    localStorage.setItem('cart-items', JSON.stringify(updatedArray));
+  }
 }

@@ -52,6 +52,7 @@ export class CartComponent implements OnInit {
   getQuantity(value: string, item: any) {
     if (item.quantity < 50 && value === 'max') {
       item.quantity += 1;
+      this.cartService.updateDataLS(item.quantity, item);
       this.totalItem += parseInt(item.price);
     } else if (item.quantity > 1 && value === 'min') {
       item.quantity -= 1;
