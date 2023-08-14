@@ -52,18 +52,6 @@ export class CartService {
     });
     return totalPrice;
   }
-
-  // removeCartItem(menu: any) {
-  //   this.cartItemList.map((a: any, index: any) => {
-  //     if (menu.itemName === a.itemName) {
-  //       this.cartItemList.splice(index, 1);
-  //       localStorage.removeItem('cart-items');
-  //       // console.log(menu);
-  //     }
-  //   });
-  //   this.menuList.next(this.cartItemList);
-  // }
-
   removeCartItem(menu: any) {
     this.cartItemList = this.cartItemList.filter(
       (a: any) => a.itemName !== menu.itemName

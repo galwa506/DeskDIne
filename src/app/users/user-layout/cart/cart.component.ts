@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { parse } from 'path';
 import { Menu } from 'src/app/model/menu.model';
 import { CartService } from 'src/app/services/cart.service';
 import Swal from 'sweetalert2';
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 export class CartComponent implements OnInit {
   dataSource = new MatTableDataSource<Menu>();
   displayedColumns = ['no', 'item', 'cost', 'q', 'remove'];
-  totalItem = this.cartService.getTotalPrice();
+  totalPrice = this.cartService.getTotalPrice();
   id = 0;
   constructor(
     private cartService: CartService,
@@ -53,15 +54,16 @@ export class CartComponent implements OnInit {
     if (item.quantity < 50 && value === 'max') {
       item.quantity += 1;
       this.cartService.updateDataLS(item.quantity, item);
-      this.totalItem += parseInt(item.price);
+      this.totalPrice += parseInt(item.price);
     } else if (item.quantity > 1 && value === 'min') {
       item.quantity -= 1;
-      this.totalItem -= parseInt(item.price);
+      this.totalPrice -= parseInt(item.price);
     }
   }
 
   removeItem(item: any) {
     this.cartService.removeCartItem(item);
+    this.totalPrice -= parseInt(item.price);
   }
   removeAll() {
     Swal.fire({
