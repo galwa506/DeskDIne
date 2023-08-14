@@ -8,6 +8,9 @@ export class CartService {
   public cartItemList: any = [];
   public menuList = new BehaviorSubject<any>([]);
 
+  constructor() {
+    this.menuList.next(this.loadCart());
+  }
   getMenuItems() {
     return this.menuList.asObservable();
   }
@@ -21,13 +24,12 @@ export class CartService {
       const existingItem = this.checkItem(menu);
       if (existingItem) {
         existingItem.quantity;
-        this.saveCart();
         return true;
       } else {
         menu.quantity = 1;
         this.cartItemList.push(menu);
-        this.saveCart();
       }
+      this.saveCart();
       this.menuList.next(this.cartItemList);
       this.getTotalPrice();
       return false;
