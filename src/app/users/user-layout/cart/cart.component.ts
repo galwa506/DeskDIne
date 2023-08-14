@@ -30,11 +30,11 @@ export class CartComponent implements OnInit {
   }
 
   fetchMenuItems() {
-    if (this.cartService.loadCart()) {
-      return (this.dataSource.data = this.cartService.loadCart());
-    }
     this.cartService.getMenuItems().subscribe(res => {
       this.dataSource.data = res;
+      if (this.cartService.loadCart()) {
+        return (this.dataSource.data = this.cartService.loadCart());
+      }
       this.dataSource.data.forEach(item => {
         const existingItem = this.cartService.checkItem(item);
         if (existingItem) {

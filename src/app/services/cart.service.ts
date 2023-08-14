@@ -22,7 +22,6 @@ export class CartService {
       if (existingItem) {
         existingItem.quantity;
         this.saveCart();
-
         return true;
       } else {
         menu.quantity = 1;
