@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
 
   fetchMenu() {
     this.cartService.getMenuItems().subscribe(res => {
-      this.totalItem = res.length;
+      this.totalItem = res?.length;
     });
   }
 }
