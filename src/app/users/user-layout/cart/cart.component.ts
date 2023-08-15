@@ -35,12 +35,6 @@ export class CartComponent implements OnInit {
       if (this.cartService.loadCart()) {
         return (this.dataSource.data = this.cartService.loadCart());
       }
-      this.dataSource.data.forEach(item => {
-        // const itemTotal = item as Menu & { total: number };
-        // const existingItem = this.cartService.checkItem(item);
-        // if (!existingItem) {
-        // }
-      });
     });
   }
 

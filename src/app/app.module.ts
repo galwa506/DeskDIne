@@ -61,6 +61,7 @@ import { CartComponent } from './users/user-layout/cart/cart.component';
 import { UserLayoutComponent } from './users/user-layout/user-layout/user-layout.component';
 import { CartService } from './services/cart.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { OrdersService } from './services/orders.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +115,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     UserService,
     MenuService,
     CartService,
+    OrdersService,
   ],
   bootstrap: [AppComponent],
 })
