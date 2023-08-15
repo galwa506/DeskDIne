@@ -28,9 +28,6 @@ export class HomeComponent implements OnInit {
   fetchMenuList() {
     this.menu.fetchMenu().subscribe(res => {
       this.menuList = res;
-      this.menuList.forEach(a => {
-        Object.assign(a, { total: a.price });
-      });
     });
   }
 
