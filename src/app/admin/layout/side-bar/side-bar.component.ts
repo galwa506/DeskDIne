@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AuthService } from 'src/app/services/auth.service';
 import { NavigationLinks } from 'src/app/misc/navigationLink.constant';
 @Component({
@@ -14,19 +12,15 @@ export class SideBarComponent implements OnInit {
   currentUser!: string | null;
   navigationLinks = NavigationLinks;
 
-  constructor(
-    private db: AngularFireDatabase,
-    private http: HttpClient,
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.getCurrentUser();
   }
 
   getCurrentUser() {
-    this.authService.getCurrentUserUid().subscribe(email => {
-      this.currentUser = email;
+    this.authService.getCurrentUserEmailUID().subscribe(user => {
+      this.currentUser = user.email;
       this.currentUser &&
         this.authService.findUserByUid(this.currentUser).subscribe(user => {
           if (user) {

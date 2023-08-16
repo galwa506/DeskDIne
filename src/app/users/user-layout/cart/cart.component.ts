@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { CartItem } from 'src/app/model/cart.model';
 import { Menu } from 'src/app/model/menu.model';
+import { Orders } from 'src/app/model/order.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { OrdersService } from 'src/app/services/orders.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cart',
@@ -13,15 +17,18 @@ export class CartComponent implements OnInit {
   dataSource = new MatTableDataSource<Menu>();
   displayedColumns = ['no', 'item', 'cost', 'q', 'remove'];
   totalPrice = this.cartService.getTotalPrice();
-
   id = 0;
+
   constructor(
     private cartService: CartService,
-    private router: Router
+    private router: Router,
+    private orderService: OrdersService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.fetchMenuItems();
+    this.orderService.getItemDetails();
   }
 
   toHome() {
@@ -82,6 +89,17 @@ export class CartComponent implements OnInit {
       confirmButtonText: 'Yes',
     }).then(result => {
       if (result.value) return this.cartService.removeAllCart();
+    });
+  }
+
+  onCheckout() {
+    this.authService.getCurrentUserEmailUID().subscribe(userId => {
+      const cartItems = this.orderService.getItemDetails();
+      if (cartItems) {
+        const userCart: CartItem = JSON.parse(cartItems);
+        const orders: Orders = new Orders(userId.email, userCart);
+        this.orderService.onPostOrders(orders).subscribe();
+      }
     });
   }
 }

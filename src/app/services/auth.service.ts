@@ -43,19 +43,23 @@ export class AuthService {
   forgotPassword(email: string): Promise<void> {
     return this.firebaseAuth.sendPasswordResetEmail(email);
   }
-  getCurrentUserUid(): Observable<string | null> {
-    return new Observable<string | null>(observer => {
-      const auth = getAuth();
-      const unsubscribe = onAuthStateChanged(auth, user => {
-        if (user) {
-          observer.next(user.uid);
-          observer.next(user.email);
-        } else {
-          observer.next(null);
-        }
-      });
-      return () => unsubscribe();
-    });
+  getCurrentUserEmailUID(): Observable<{
+    uid: string | null;
+    email: string | null;
+  }> {
+    return new Observable<{ uid: string | null; email: string | null }>(
+      observer => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, user => {
+          if (user) {
+            observer.next({ uid: user.uid, email: user.email });
+          } else {
+            observer.next({ uid: null, email: null });
+          }
+        });
+        return () => unsubscribe();
+      }
+    );
   }
 
   findUserByUid(emailToFind: string) {

@@ -25,7 +25,7 @@ export class RegisterComponent {
         const userData = {
           email: email,
           name: name,
-          role: 1,
+          role: 0,
         };
         this.db.database.ref('users/' + user?.uid).set(userData);
         Swal.fire({

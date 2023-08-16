@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, catchError, map, mergeMap, of, switchMap } from 'rxjs';
+import { Observable, catchError, map, switchMap } from 'rxjs';
 import { Menu } from '../model/menu.model';
 import Swal from 'sweetalert2';
 

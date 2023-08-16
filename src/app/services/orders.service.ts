@@ -10,8 +10,10 @@ export class OrdersService {
   constructor(private http: HttpClient) {}
 
   onPostOrders(orders: Orders) {
-    this.http
-      .post(environment.baseUrl + `orders.json`, orders)
-      .subscribe(res => {});
+    return this.http.post(environment.baseUrl + `orders.json`, orders);
+  }
+
+  getItemDetails() {
+    return localStorage.getItem('cart-items');
   }
 }
