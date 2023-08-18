@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CartItem } from 'src/app/model/cart.model';
 import { Menu } from 'src/app/model/menu.model';
 import { Orders } from 'src/app/model/order.model';
+import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { OrdersService } from 'src/app/services/orders.service';
@@ -23,7 +24,8 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private router: Router,
     private orderService: OrdersService,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -95,11 +97,16 @@ export class CartComponent implements OnInit {
   onCheckout() {
     this.authService.getCurrentUserEmailUID().subscribe(userId => {
       const cartItems = this.orderService.getItemDetails();
-      if (cartItems) {
-        const userCart: CartItem = JSON.parse(cartItems);
-        const orders: Orders = new Orders(userId.email, userCart);
-        this.orderService.onPostOrders(orders).subscribe();
-      }
+      cartItems &&
+        this.alertService.confirmAlert().then(result => {
+          const userCart: CartItem[] = JSON.parse(cartItems);
+          const orders: Orders = new Orders(userId.email, userCart);
+          if (result.value) {
+            this.orderService.postOrders(orders).subscribe();
+            this.alertService.successAlert();
+            return this.cartService.removeAllCart();
+          }
+        });
     });
   }
 }
